@@ -30,31 +30,32 @@ export default function Contact() {
   };
 
   const Info = ({ icon: Icon, children }) => (
-    <li className="flex items-start gap-3 transition-transform duration-200 hover:translate-x-1">
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-orange/10 text-orange dark:bg-sun/10 dark:text-sun border border-orange/20 dark:border-sun/20">
-        <Icon size={18} aria-hidden />
+    <li className="flex items-start gap-4 transition-transform duration-200 hover:translate-x-0.5">
+      <span className="grid h-10 w-10 shrink-0 place-items-center border border-accent/20 text-accent bg-accent/5">
+        <Icon size={16} aria-hidden />
       </span>
-      <div className="mt-1 font-sans">{children}</div>
+      <div className="mt-1.5 font-sans text-sm">{children}</div>
     </li>
   );
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
-      <div className="grid gap-12 lg:grid-cols-5">
+    <section id="contact" className="relative grain mx-auto max-w-6xl px-6 py-24 sm:px-8 md:py-32">
+      <div className="grid gap-14 lg:grid-cols-5">
+        {/* Left info */}
         <Reveal className="lg:col-span-2">
-          <span className="font-accent text-xs font-bold uppercase tracking-widest text-orange dark:text-sun bg-orange/10 dark:bg-sun/10 px-3.5 py-1.5 rounded-full border border-orange/20 dark:border-sun/20">
-            Bookings & Quotes
-          </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Get your free quote
+          <span className="section-tag">Contact</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Get your{' '}
+            <em className="italic font-normal text-accent">free quote</em>
           </h2>
-          <p className="mt-4 text-lg text-muted font-sans leading-relaxed">
+          <div className="section-divider" />
+          <p className="mt-5 text-base text-muted font-sans leading-relaxed">
             Tell us about your event and we will reply with machines, flavours and pricing.
           </p>
-          
-          <ul className="mt-8 space-y-4">
+
+          <ul className="mt-10 space-y-5">
             <Info icon={Phone}>
-              <a href={BUSINESS.phoneHref} className="font-semibold text-ink hover:text-orange dark:hover:text-sun transition-colors">
+              <a href={BUSINESS.phoneHref} className="font-semibold text-ink hover:text-accent transition-colors">
                 {BUSINESS.phone}
               </a>
             </Info>
@@ -74,54 +75,55 @@ export default function Contact() {
           </ul>
         </Reveal>
 
+        {/* Form */}
         <Reveal className="lg:col-span-3">
           {state === 'sent' ? (
-            <div role="status" className="rounded-3xl border border-line bg-surface p-10 text-center shadow-lg">
-              <CheckCircle size={48} className="mx-auto text-green-500 animate-bounce" aria-hidden />
-              <h3 className="mt-4 font-display text-2xl font-bold">Enquiry received</h3>
-              <p className="mt-2 text-muted font-sans">
+            <div role="status" className="border border-line bg-surface p-12 text-center">
+              <CheckCircle size={44} className="mx-auto text-sage" aria-hidden />
+              <h3 className="mt-5 font-display text-2xl font-bold">Enquiry received</h3>
+              <p className="mt-3 text-muted font-sans">
                 Thanks! We will get back to you shortly. For anything urgent, call {BUSINESS.phone}.
               </p>
-              <button onClick={() => setState('idle')} className="btn btn-primary mt-6">
-                Send another enquiry
+              <button onClick={() => setState('idle')} className="btn btn-primary mt-8">
+                Send Another Enquiry
               </button>
             </div>
           ) : (
-            <form onSubmit={submit} className="hover-lift grid gap-4 rounded-3xl border border-line bg-surface p-6 sm:grid-cols-2 sm:p-8 shadow-sm">
-              <label className="text-sm font-semibold font-accent text-ink">
+            <form onSubmit={submit} className="hover-lift grid gap-5 border border-line bg-surface p-7 sm:grid-cols-2 sm:p-10">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink">
                 Name
-                <input required className="field mt-1.5 font-sans" value={f.name} onChange={set('name')} autoComplete="name" placeholder="Your full name" />
+                <input required className="field mt-2 font-sans text-sm" value={f.name} onChange={set('name')} autoComplete="name" placeholder="Your full name" />
               </label>
-              <label className="text-sm font-semibold font-accent text-ink">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink">
                 Phone
-                <input required type="tel" className="field mt-1.5 font-sans" value={f.phone} onChange={set('phone')} autoComplete="tel" placeholder="0400 000 000" />
+                <input required type="tel" className="field mt-2 font-sans text-sm" value={f.phone} onChange={set('phone')} autoComplete="tel" placeholder="0400 000 000" />
               </label>
-              <label className="text-sm font-semibold font-accent text-ink sm:col-span-2">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink sm:col-span-2">
                 Email
-                <input required type="email" className="field mt-1.5 font-sans" value={f.email} onChange={set('email')} autoComplete="email" placeholder="you@example.com" />
+                <input required type="email" className="field mt-2 font-sans text-sm" value={f.email} onChange={set('email')} autoComplete="email" placeholder="you@example.com" />
               </label>
-              <label className="text-sm font-semibold font-accent text-ink">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink">
                 Event date
-                <input required type="date" className="field mt-1.5 font-sans" value={f.date} onChange={set('date')} />
+                <input required type="date" className="field mt-2 font-sans text-sm" value={f.date} onChange={set('date')} />
               </label>
-              <label className="text-sm font-semibold font-accent text-ink">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink">
                 Hire type
-                <select className="field mt-1.5 font-sans cursor-pointer" value={f.type} onChange={set('type')}>
+                <select className="field mt-2 font-sans text-sm cursor-pointer" value={f.type} onChange={set('type')}>
                   <option>Overnight hire</option>
                   <option>Long-term commercial hire</option>
                 </select>
               </label>
-              <label className="text-sm font-semibold font-accent text-ink sm:col-span-2">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink sm:col-span-2">
                 Event location
-                <input required className="field mt-1.5 font-sans" value={f.location} onChange={set('location')} placeholder="Suburb or town in the NT" />
+                <input required className="field mt-2 font-sans text-sm" value={f.location} onChange={set('location')} placeholder="Suburb or town in the NT" />
               </label>
-              <label className="text-sm font-semibold font-accent text-ink sm:col-span-2">
+              <label className="font-accent text-[11px] font-medium uppercase tracking-[0.12em] text-ink sm:col-span-2">
                 Message
-                <textarea rows={4} className="field mt-1.5 font-sans" value={f.message} onChange={set('message')} placeholder="Number of guests, flavours you like, anything we should know" />
+                <textarea rows={4} className="field mt-2 font-sans text-sm" value={f.message} onChange={set('message')} placeholder="Number of guests, flavours you like, anything we should know" />
               </label>
 
               {state === 'error' && (
-                <p role="alert" className="text-sm font-medium text-red-600 sm:col-span-2">
+                <p role="alert" className="text-sm font-medium text-coral sm:col-span-2">
                   Something went wrong. Please try again or call {BUSINESS.phone}.
                 </p>
               )}
@@ -131,8 +133,8 @@ export default function Contact() {
                 disabled={state === 'sending'}
                 className="group btn btn-primary sm:col-span-2 disabled:opacity-60 mt-2"
               >
-                <span>{state === 'sending' ? 'Sending...' : 'Send enquiry'}</span>
-                <Send size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <span>{state === 'sending' ? 'Sending...' : 'Send Enquiry'}</span>
+                <Send size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </form>
           )}
